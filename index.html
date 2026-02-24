@@ -1,203 +1,1135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hope Foundation | Empowering Change</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hope Foundation · complete ecosystem</title>
+  <!-- Tailwind + Font Awesome + AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+    body { background: #f9fafb; }
+    /* glass morphism */
+    .glass-nav { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .glass-card { background: rgba(255,255,255,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.7); }
+    .hero-overlay { background: linear-gradient(135deg, rgba(0,40,30,0.8) 0%, rgba(2,60,45,0.7) 100%); }
+    .hover-lift { transition: all 0.2s ease; }
+    .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -10px rgba(4,120,87,0.3); }
+    .tab-active { border-bottom: 3px solid #059669; color: #059669; font-weight: 600; }
+    /* simple admin toggle (demo) */
+    .admin-only { display: none !important; }
+    body.show-admin .admin-only { display: block !important; }
+    body.show-admin .user-only { display: none !important; }
+    .edit-option { display: none !important; transition: 0.2s; }
+    body.show-admin .edit-option { display: inline-block !important; }
+  </style>
 </head>
+<body class="text-gray-800">
 
-<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- ========== NAVIGATION (common) ========== -->
+  <nav class="fixed w-full z-50 glass-nav px-6 md:px-12 py-4 flex justify-between items-center">
+    <a href="#" class="text-3xl font-black text-emerald-700">HOPE<span class="text-amber-600">+</span></a>
+    <div class="hidden md:flex items-center gap-8 font-medium text-gray-700">
+      <a href="#" class="hover:text-emerald-600">HOME</a>
+      <a href="#about" class="hover:text-emerald-600">ABOUT</a>
+      <a href="#impact" class="hover:text-emerald-600">IMPACT</a>
+      <a href="#donate" class="hover:text-emerald-600">DONATE</a>
+      <a href="#team" class="hover:text-emerald-600">TEAM</a>
+      <a href="#contact" class="hover:text-emerald-600">CONTACT</a>
+      <!-- admin toggle (demo only) -->
+      <button id="adminToggleBtn" class="bg-gray-200 text-gray-800 px-4 py-1.5 rounded-full text-sm"><i class="fas fa-lock mr-1"></i>ADMIN</button>
+    </div>
+  </nav>
 
-    <nav class="fixed w-full z-50 bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-emerald-600">HOPE NGO</a>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#about" class="hover:text-emerald-600 transition">About</a>
-                <a href="#works" class="hover:text-emerald-600 transition">Our Works</a>
-                <a href="#projects" class="hover:text-emerald-600 transition">Projects</a>
-                <a href="#team" class="hover:text-emerald-600 transition">Team</a>
-                <a href="#contact" class="hover:text-emerald-600 transition">Contact</a>
-                <a href="#donate"
-                    class="bg-emerald-600 text-white px-5 py-2 rounded-full hover:bg-emerald-700 transition">Donate</a>
-            </div>
+  <!-- ========== HOME PAGE SECTION (hero) ========== -->
+  <section id="home" class="pt-28 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-emerald-900 to-teal-800 text-white">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <span class="inline-block px-4 py-2 rounded-full bg-white/20 text-sm tracking-widest mb-6">EST 2010 · INDIA</span>
+        <h1 class="text-5xl md:text-7xl font-black leading-tight">courage to <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-emerald-200">rebuild</span></h1>
+        <p class="text-xl md:text-2xl mt-6 mb-10 text-gray-100">women safety · addiction recovery · blood network — grassroots driven.</p>
+        <div class="flex flex-wrap gap-5">
+          <a href="#impact" class="bg-white text-emerald-800 px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl transition">explore impact</a>
+          <a href="#donate" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition">donate now</a>
         </div>
-    </nav>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"><i class="fas fa-chevron-down text-2xl text-white/60"></i></div>
+  </section>
 
-    <header class="hero-bg h-screen flex items-center justify-center text-center text-white px-4">
+  <!-- ========== ABOUT PAGE ========== -->
+  <section id="about" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-emerald-600 font-bold tracking-[.2em] text-sm">ABOUT US</span>
+        <h2 class="text-4xl md:text-5xl font-black mt-4">why hope exists</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-16 items-center">
         <div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 italic">Empowering Lives, Together.</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Our Mission: To create a drug-free, safe, and healthy
-                society for every individual.</p>
-            <div class="space-x-4">
-                <a href="#works"
-                    class="bg-white text-emerald-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">Our
-                    Impact</a>
-                <a href="#donate"
-                    class="bg-emerald-600 text-white px-8 py-3 rounded-full font-bold hover:bg-emerald-700 transition">Join
-                    Us</a>
-            </div>
+          <p class="text-lg text-gray-600 mb-6">Founded after the 2010 Mumbai floods, we realised that institutional aid never reached the most vulnerable. Today we run 34 community shelters, 52 de-addiction centres, and a 24/7 blood donor network — all managed by local leaders.</p>
+          <div class="grid grid-cols-2 gap-6 mt-8">
+            <div><span class="text-4xl font-black text-emerald-700">86+</span><p class="text-sm uppercase tracking-wider">villages covered</p></div>
+            <div><span class="text-4xl font-black text-emerald-700">24k</span><p class="text-sm uppercase tracking-wider">youth mentored</p></div>
+            <div><span class="text-4xl font-black text-emerald-700">520</span><p class="text-sm uppercase tracking-wider">active volunteers</p></div>
+            <div><span class="text-4xl font-black text-emerald-700">15</span><p class="text-sm uppercase tracking-wider">states</p></div>
+          </div>
         </div>
-    </header>
-
-    <section id="about" class="py-20 container mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold mb-6 text-emerald-600">About Our Vision</h2>
-                <p class="text-gray-600 mb-4">Founded in 2010, Hope NGO has been at the forefront of social change. We
-                    believe in grassroots empowerment and sustainable development.</p>
-                <div class="bg-emerald-50 p-6 border-l-4 border-emerald-600">
-                    <p class="italic text-emerald-800">"Our vision is a world where every woman feels safe, every youth
-                        is free from addiction, and no life is lost due to lack of blood."</p>
-                </div>
-            </div>
-            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80"
-                class="rounded-lg shadow-xl" alt="About us">
+        <div class="grid grid-cols-2 gap-3">
+          <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=800&q=80" class="rounded-2xl shadow-xl h-60 w-full object-cover">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" class="rounded-2xl shadow-xl h-48 w-full object-cover mt-8">
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="works" class="py-20 bg-white text-center">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12">Our Pillars of Work</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 border rounded-xl hover:shadow-lg transition">
-                    <i class="fas fa-shield-heart text-4xl text-emerald-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Women Safety</h3>
-                    <p class="text-gray-600">Self-defense workshops and legal aid for women in vulnerable communities.
-                    </p>
-                </div>
-                <div class="p-8 border rounded-xl hover:shadow-lg transition">
-                    <i class="fas fa-ban-smoking text-4xl text-emerald-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Anti-Drug Drive</h3>
-                    <p class="text-gray-600">Rehabilitation support and awareness campaigns in schools and colleges.</p>
-                </div>
-                <div class="p-8 border rounded-xl hover:shadow-lg transition">
-                    <i class="fas fa-droplet text-4xl text-emerald-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Blood Donation</h3>
-                    <p class="text-gray-600">24/7 blood donor network connecting hospitals with voluntary donors.</p>
-                </div>
-            </div>
+  <!-- ========== OUR IMPACT PAGE (full customization) ========== -->
+  <section id="impact" class="py-24 bg-emerald-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-emerald-700 font-black tracking-[.3em] text-sm">OUR IMPACT</span>
+        <h2 class="text-4xl md:text-5xl font-black mt-4">change that counts</h2>
+        <p class="text-gray-600 mt-4">fully customizable metrics — updated quarterly by admins</p>
+      </div>
+      <!-- custom impact cards (editable via admin panel concept) -->
+      <div class="grid md:grid-cols-4 gap-6 mt-16">
+        <div class="bg-white p-8 rounded-3xl shadow-lg text-center hover-lift" data-aos="fade-up">
+          <i class="fa-solid fa-shield-halved text-5xl text-emerald-700 mb-4"></i>
+          <span class="text-4xl font-black text-emerald-800" id="metric-women-safety">18</span>
+          <p class="text-gray-500 mt-2">women safety centers</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;" onclick="showEditModal('18', 'women safety centers')"><i class="fa-regular fa-pen-to-square"></i> edit</span>
         </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-10 text-center">Upcoming Projects</h2>
-            <div class="bg-white p-8 rounded-2xl shadow-sm flex flex-col md:flex-row items-center gap-8">
-                <div class="bg-emerald-600 text-white p-6 rounded-xl text-center">
-                    <span class="block text-4xl font-bold">15</span>
-                    <span class="uppercase tracking-widest">March 2026</span>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold">Mega Health Camp & Vaccination Drive</h3>
-                    <p class="text-gray-600 mt-2">Providing free medical checkups for over 500 families in the rural
-                        outskirts.</p>
-                </div>
-            </div>
+        <div class="bg-white p-8 rounded-3xl shadow-lg text-center hover-lift" data-aos="fade-up" data-aos-delay="50">
+          <i class="fa-solid fa-hand-holding-heart text-5xl text-emerald-700 mb-4"></i>
+          <span class="text-4xl font-black text-emerald-800" id="metric-rehab">1,450</span>
+          <p class="text-gray-500 mt-2">rehab success stories</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;" onclick="showEditModal('1450', 'rehab success stories')"><i class="fa-regular fa-pen-to-square"></i> edit</span>
         </div>
-    </section>
-
-    <section id="team" class="py-20 container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-12">Meet Our Leaders</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-                <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=1" alt="Team member">
-                </div>
-                <h4 class="font-bold">John Doe</h4>
-                <p class="text-sm text-emerald-600">Founder & Director</p>
-            </div>
-            <div>
-                <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=2" alt="Team member">
-                </div>
-                <h4 class="font-bold">Sarah Smith</h4>
-                <p class="text-sm text-emerald-600">Head of Operations</p>
-            </div>
-            <div>
-                <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=3" alt="Team member">
-                </div>
-                <h4 class="font-bold">Mike Ross</h4>
-                <p class="text-sm text-emerald-600">Lead Volunteer</p>
-            </div>
-            <div>
-                <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=4" alt="Team member">
-                </div>
-                <h4 class="font-bold">Anita Rao</h4>
-                <p class="text-sm text-emerald-600">Legal Advisor</p>
-            </div>
+        <div class="bg-white p-8 rounded-3xl shadow-lg text-center hover-lift" data-aos="fade-up" data-aos-delay="100">
+          <i class="fa-solid fa-droplet text-5xl text-emerald-700 mb-4"></i>
+          <span class="text-4xl font-black text-emerald-800" id="metric-blood">4.2k</span>
+          <p class="text-gray-500 mt-2">blood units/year</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;" onclick="showEditModal('4200', 'blood units/year')"><i class="fa-regular fa-pen-to-square"></i> edit</span>
         </div>
-    </section>
-
-    <section id="donate" class="py-20 bg-emerald-900 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-8">Support Our Cause</h2>
-            <div class="grid md:grid-cols-2 gap-12 text-left max-w-4xl mx-auto">
-                <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md">
-                    <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Bank Details</h3>
-                    <p class="mb-2"><strong>Bank:</strong> National Bank of Change</p>
-                    <p class="mb-2"><strong>Account Name:</strong> Hope NGO Trust</p>
-                    <p class="mb-2"><strong>Account No:</strong> 1234 5678 9012</p>
-                    <p><strong>IFSC:</strong> NBCH0009876</p>
-                </div>
-                <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md text-center">
-                    <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Donate via UPI</h3>
-                    <div class="bg-white p-4 inline-block rounded-lg mb-4">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=ngo@upi"
-                            alt="QR Code">
-                    </div>
-                    <p class="font-mono font-bold">ngo@upi</p>
-                </div>
-            </div>
+        <div class="bg-white p-8 rounded-3xl shadow-lg text-center hover-lift" data-aos="fade-up" data-aos-delay="150">
+          <i class="fa-solid fa-scale-balanced text-5xl text-emerald-700 mb-4"></i>
+          <span class="text-4xl font-black text-emerald-800" id="metric-legal">312</span>
+          <p class="text-gray-500 mt-2">legal aid cases</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;" onclick="showEditModal('312', 'legal aid cases')"><i class="fa-regular fa-pen-to-square"></i> edit</span>
         </div>
-    </section>
+      </div>
+      <!-- CUSTOMIZATION NOTE (admin demo) -->
+      <div class="mt-12 text-center p-6 bg-white/60 rounded-2xl border border-emerald-200 admin-only">
+        <i class="fa-solid fa-gear text-emerald-700 mr-2"></i> <strong>impact dashboard (admin):</strong> you can update numbers, add new blocks, toggle visibility.
+      </div>
+    </div>
+  </section>
 
-    <footer id="contact" class="py-20 bg-gray-900 text-gray-400">
-        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="text-white text-xl font-bold mb-4">Contact Us</h3>
-                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Social Ave, City Center</p>
-                <p class="mb-2"><i class="fas fa-phone mr-2"></i> +91 98765 43210</p>
-                <p><i class="fas fa-envelope mr-2"></i> help@hopengo.org</p>
-            </div>
-            <div class="text-center">
-                <h3 class="text-white text-xl font-bold mb-4">Follow Us</h3>
-                <div class="flex justify-center space-x-6 text-2xl">
-                    <a href="#" class="hover:text-white"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-white text-xl font-bold mb-4">Newsletter</h3>
-                <form class="flex gap-2">
-                    <input type="email" placeholder="Email"
-                        class="bg-gray-800 border border-gray-700 px-4 py-2 rounded w-full focus:outline-none focus:border-emerald-500 text-white">
-                    <button class="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700">Join</button>
-                </form>
-            </div>
+  <!-- ========== DONATE PAGE ========== -->
+  <section id="donate" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-emerald-600 font-black tracking-[.3em] text-sm">DONATE</span>
+        <h2 class="text-4xl md:text-5xl font-black mt-4">fuel the mission</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- bank -->
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl shadow-xl border border-gray-200 hover-lift">
+          <i class="fa-solid fa-building-columns text-3xl text-emerald-700 mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">bank transfer</h3>
+          <p class="text-sm font-mono bg-gray-100 p-3 rounded">HOPE FOUNDATION<br> A/C 1234 5678 9012<br> IFSC HOPE0001234</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i> edit bank</span>
         </div>
-    </footer>
-    <a href="https://wa.me/9361463316"
-        class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:bg-green-600 transition-all z-50">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <!-- UPI QR -->
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl shadow-xl border border-gray-200 hover-lift text-center">
+          <i class="fa-solid fa-qrcode text-3xl text-emerald-700 mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">UPI / QR</h3>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=upi://pay?pa=hopeng@ybl&pn=Hope%20Foundation" class="w-32 h-32 mx-auto bg-white p-1 rounded-xl">
+          <p class="mt-2 font-mono text-sm">hopeng@ybl</p>
+          <span class="text-xs text-emerald-600 edit-option block mt-2" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i> change QR</span>
+        </div>
+        <!-- location & address -->
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl shadow-xl border border-gray-200 hover-lift">
+          <i class="fa-solid fa-map-marker text-3xl text-emerald-700 mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">visit us</h3>
+          <div class="text-sm text-gray-700 mb-4">
+            <p class="font-semibold mb-1" id="ngoName">Hope Foundation</p>
+            <p id="ngoStreet">Sector 7, Charity Lane</p>
+            <p id="ngoCity">Mumbai, Maharashtra 400001</p>
+            <p class="mt-2 text-emerald-600 font-semibold" id="ngoPhone">+91 22 1234 5678</p>
+          </div>
+          <a id="mapsLink" href="https://maps.google.com/maps?q=hope+foundation+mumbai" target="_blank" class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-semibold hover:bg-emerald-200 transition">view on maps</a>
+          <span class="text-xs text-emerald-600 edit-option block mt-3" style="cursor: pointer;" onclick="openAddressEditModal()"><i class="fa-regular fa-pen-to-square"></i> edit address</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ========== TEAM MEMBER / REGISTRATION ========== -->
+  <section id="team" class="py-24 bg-emerald-50">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap items-end justify-between mb-12">
+        <div>
+          <span class="text-emerald-700 font-black tracking-[.2em] text-sm">OUR PEOPLE</span>
+          <h2 class="text-4xl md:text-5xl font-black mt-2">core team & registration</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="document.getElementById('volunteerForm').scrollIntoView({behavior: 'smooth'})" class="bg-emerald-700 text-white px-6 py-3 rounded-full font-bold hover:bg-emerald-800 transition"><i class="fa-regular fa-id-card mr-2"></i> volunteer registration</button>
+          <button onclick="openAddMemberModal()" class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-4 py-2 rounded-full font-semibold edit-option" style="display:none;"><i class="fa-solid fa-plus mr-2"></i> Add member</button>
+        </div>
+      </div>
+      <!-- team grid (rendered from API) -->
+      <div id="team-grid" class="grid md:grid-cols-4 gap-8">
+        <!-- team members load dynamically -->
+      </div>
+      <!-- public volunteer registration form -->
+      <div id="volunteerForm" class="mt-16 bg-emerald-50 p-8 rounded-3xl shadow-xl border border-emerald-200">
+        <h3 class="text-2xl font-bold mb-6">join our volunteer team</h3>
+        <form onsubmit="submitVolunteerForm(event)" class="grid md:grid-cols-2 gap-6">
+          <input type="text" id="volName" placeholder="full name" class="border border-gray-300 px-5 py-3 rounded-xl" required>
+          <input type="email" id="volEmail" placeholder="email" class="border border-gray-300 px-5 py-3 rounded-xl" required>
+          <input type="tel" id="volPhone" placeholder="phone" class="border border-gray-300 px-5 py-3 rounded-xl" required>
+          <select id="volArea" class="border border-gray-300 px-5 py-3 rounded-xl" required>
+            <option value="">select interest area</option>
+            <option value="women safety">women safety & counseling</option>
+            <option value="rehab programs">rehab programs & support</option>
+            <option value="blood donation">blood donation drives</option>
+            <option value="legal aid">legal aid & advocacy</option>
+            <option value="fundraising">fundraising & events</option>
+            <option value="social media">social media & communication</option>
+          </select>
+          <button type="submit" class="bg-emerald-700 text-white px-8 py-4 rounded-full font-bold w-full md:col-span-2 hover:bg-emerald-800 transition">submit registration</button>
+        </form>
+      </div>
+      <!-- admin volunteer management panel -->
+      <div class="mt-16 bg-white p-8 rounded-3xl shadow-xl border edit-option" style="display: none;">
+        <h3 class="text-2xl font-bold mb-6">manage volunteers</h3>
+        
+        <!-- Admin manual add volunteer form -->
+        <div class="mb-8 bg-gray-50 p-6 rounded-2xl border border-gray-200">
+          <h4 class="font-bold mb-4 text-emerald-700">+ Add New Volunteer (Admin)</h4>
+          <div class="grid md:grid-cols-2 gap-3">
+            <input type="text" id="adminVolName" placeholder="full name" class="border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            <input type="email" id="adminVolEmail" placeholder="email" class="border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            <input type="tel" id="adminVolPhone" placeholder="phone" class="border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            <select id="adminVolArea" class="border border-gray-300 px-3 py-2 rounded-lg text-sm">
+              <option value="">select interest</option>
+              <option value="women safety">women safety</option>
+              <option value="rehab programs">rehab programs</option>
+              <option value="blood donation">blood donation</option>
+              <option value="legal aid">legal aid</option>
+              <option value="fundraising">fundraising</option>
+              <option value="social media">social media</option>
+            </select>
+            <button onclick="addVolunteerAdmin()" class="bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold text-sm md:col-span-2">Add Volunteer</button>
+          </div>
+        </div>
+
+        <!-- Volunteers list -->
+        <div class="grid gap-4 mb-4">
+          <div id="volunteers-list" class="max-h-96 overflow-y-auto">
+            <p class="text-gray-400 text-center py-8">Loading volunteer registrations...</p>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="loadVolunteers()" class="bg-emerald-700 text-white px-6 py-2 rounded-full font-bold text-sm">refresh</button>
+          <button onclick="exportVolunteersCSV()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-sm">export CSV</button>
+          <button onclick="deleteAllVolunteers()" class="bg-red-600 text-white px-6 py-2 rounded-full font-bold text-sm">clear all</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT US PAGE ========== -->
+  <section id="contact" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-emerald-600 font-black tracking-[.2em] text-sm">CONTACT</span>
+        <h2 class="text-4xl md:text-5xl font-black mt-4">get in touch</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-16 mt-16">
+        <div>
+          <div class="flex items-start gap-5 mb-8">
+            <i class="fa-solid fa-map-pin text-3xl text-emerald-700"></i>
+            <div><h4 class="text-xl font-bold">visit us</h4><p class="text-gray-600">B-123, social district, mumbai 400001</p><span class="text-xs text-emerald-600 edit-option" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i> edit</span></div>
+          </div>
+          <div class="flex items-start gap-5 mb-8">
+            <i class="fa-solid fa-phone text-3xl text-emerald-700"></i>
+            <div><h4 class="text-xl font-bold">call / WhatsApp</h4><p class="text-gray-600">+91 22 6789 1234</p><span class="text-xs text-emerald-600 edit-option" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i> edit</span></div>
+          </div>
+          <div class="flex items-start gap-5">
+            <i class="fa-solid fa-envelope text-3xl text-emerald-700"></i>
+            <div><h4 class="text-xl font-bold">email</h4><p class="text-gray-600">hello@hope.ngo</p><span class="text-xs text-emerald-600 edit-option" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i> edit</span></div>
+          </div>
+        </div>
+        <!-- social media -->
+        <div class="bg-gray-50 p-8 rounded-3xl shadow-inner">
+          <h4 class="text-2xl font-bold mb-8 text-center">follow us on social</h4>
+          <div class="flex flex-col gap-6">
+            <a href="https://www.instagram.com/hopefoundation" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:bg-emerald-50 transition border border-gray-200 relative group">
+              <i class="fab fa-instagram text-3xl text-pink-600"></i>
+              <div>
+                <h5 class="font-bold text-gray-800">Instagram</h5>
+                <p class="text-sm text-gray-600" id="ig-handle">@hopefoundation</p>
+              </div>
+              <span class="text-xs text-pink-600 edit-option absolute top-2 right-2 cursor-pointer" onclick="editSocialHandle('Instagram', '@hopefoundation', 'ig-handle')"><i class="fa-regular fa-pen-to-square"></i></span>
+            </a>
+            <a href="https://www.facebook.com/hopefoundation" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:bg-emerald-50 transition border border-gray-200 relative group">
+              <i class="fab fa-facebook text-3xl text-blue-600"></i>
+              <div>
+                <h5 class="font-bold text-gray-800">Facebook</h5>
+                <p class="text-sm text-gray-600" id="fb-handle">Hope Foundation</p>
+              </div>
+              <span class="text-xs text-blue-600 edit-option absolute top-2 right-2 cursor-pointer" onclick="editSocialHandle('Facebook', 'Hope Foundation', 'fb-handle')"><i class="fa-regular fa-pen-to-square"></i></span>
+            </a>
+            <a href="https://www.linkedin.com/company/hopefoundation" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:bg-emerald-50 transition border border-gray-200 relative group">
+              <i class="fab fa-linkedin text-3xl text-blue-700"></i>
+              <div>
+                <h5 class="font-bold text-gray-800">LinkedIn</h5>
+                <p class="text-sm text-gray-600" id="li-handle">Hope Foundation NGO</p>
+              </div>
+              <span class="text-xs text-blue-700 edit-option absolute top-2 right-2 cursor-pointer" onclick="editSocialHandle('LinkedIn', 'Hope Foundation NGO', 'li-handle')"><i class="fa-regular fa-pen-to-square"></i></span>
+            </a>
+            <a href="https://www.twitter.com/hope_foundation" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:bg-emerald-50 transition border border-gray-200 relative group">
+              <i class="fab fa-x-twitter text-3xl text-gray-800"></i>
+              <div>
+                <h5 class="font-bold text-gray-800">Twitter / X</h5>
+                <p class="text-sm text-gray-600" id="tw-handle">@hope_foundation</p>
+              </div>
+              <span class="text-xs text-gray-600 edit-option absolute top-2 right-2 cursor-pointer" onclick="editSocialHandle('Twitter/X', '@hope_foundation', 'tw-handle')"><i class="fa-regular fa-pen-to-square"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ADMIN PANEL (demo section) ========== -->
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <div class="text-2xl font-black text-white mb-4 md:mb-0">HOPE<span class="text-emerald-500">+</span></div>
+      <div class="flex gap-5 text-xl mt-4 md:mt-0">
+        <i class="fab fa-instagram hover:text-white"></i>
+        <i class="fab fa-x-twitter hover:text-white"></i>
+        <i class="fab fa-linkedin hover:text-white"></i>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // API Configuration
+    const API_BASE = 'http://localhost:5000/api';
+    let adminToken = localStorage.getItem('adminToken');
+
+    AOS.init({ duration: 1000, once: true });
+
+    // Initialize admin state if already logged in
+    if (adminToken) {
+      document.body.classList.add('show-admin');
+      const adminBtn = document.getElementById('adminToggleBtn');
+      if (adminBtn) {
+        adminBtn.innerHTML = '<i class="fa-solid fa-lock-open mr-1"></i>ADMIN ON';
+      }
+      // Load admin data on page load
+      window.addEventListener('load', () => {
+        loadVolunteers();
+        loadTeam();
+        document.querySelectorAll('.edit-option').forEach(el => el.style.display = 'block');
+      });
+    }
+
+    // Admin mode toggle
+    const adminBtn = document.getElementById('adminToggleBtn');
+    adminBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('show-admin')) {
+        document.body.classList.remove('show-admin');
+        adminBtn.innerHTML = '<i class="fa-solid fa-lock mr-1"></i>ADMIN';
+        localStorage.removeItem('adminToken');
+        adminToken = null;
+      } else {
+        showLoginModal();
+      }
+    });
+
+    // Login Modal
+    function showLoginModal() {
+      const modal = document.createElement('div');
+      modal.id = 'loginModal';
+      modal.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 9999;">
+          <div style="background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 400px;">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: bold;">Admin Login</h2>
+            <input type="text" id="adminUsername" placeholder="Username" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="password" id="adminPassword" placeholder="Password" style="width: 100%; padding: 0.75rem; margin-bottom: 1.5rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+              <div style="display: flex; gap: 1rem;">
+                <button onclick="loginAdmin()" style="flex: 1; background: #059669; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Login</button>
+                <button onclick="this.closest('[style*=position]').remove()" style="flex: 1; background: #e5e7eb; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Cancel</button>
+              </div>
+            <div id="loginError" style="color: red; font-size: 0.875rem; margin-top: 1rem; display: none;"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.getElementById('adminPassword').focus();
+    }
+
+    async function loginAdmin() {
+      const username = document.getElementById('adminUsername').value;
+      const password = document.getElementById('adminPassword').value;
+      const errorDiv = document.getElementById('loginError');
+
+      if (!username || !password) {
+        errorDiv.textContent = 'Please enter username and password';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          adminToken = data.access_token;
+          localStorage.setItem('adminToken', adminToken);
+          document.body.classList.add('show-admin');
+          adminBtn.innerHTML = '<i class="fa-solid fa-lock-open mr-1"></i>ADMIN ON';
+          const lm = document.getElementById('loginModal');
+          if (lm) lm.remove();
+          loadVolunteers();
+          loadTeam();
+          document.querySelectorAll('.edit-option').forEach(el => el.style.display = 'block');
+        } else {
+          errorDiv.textContent = data.error || 'Login failed';
+          errorDiv.style.display = 'block';
+        }
+      } catch (error) {
+        errorDiv.textContent = 'Connection error. Make sure backend is running on localhost:5000';
+        errorDiv.style.display = 'block';
+      }
+    }
+
+    // Volunteer Registration Form
+    document.addEventListener('DOMContentLoaded', () => {
+      const teamSection = document.getElementById('team');
+      const volunteerForm = teamSection.querySelector('form');
+      
+      if (volunteerForm) {
+        volunteerForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const formData = {
+            full_name: volunteerForm.querySelector('input[placeholder="full name"]')?.value,
+            email: volunteerForm.querySelector('input[placeholder="email"]')?.value,
+            phone: volunteerForm.querySelector('input[placeholder="phone"]')?.value,
+            interested_area: volunteerForm.querySelector('select')?.value
+          };
+
+          if (!formData.full_name || !formData.email || !formData.phone || !formData.interested_area) {
+            alert('Please fill in all fields');
+            return;
+          }
+
+          try {
+            const response = await fetch(`${API_BASE}/volunteers/`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+              alert('Thank you! Your volunteer registration has been submitted. Admin will review it soon.');
+              volunteerForm.reset();
+            } else {
+              alert('Error submitting registration. Please try again.');
+            }
+          } catch (error) {
+            alert('Connection error. Make sure backend is running.');
+          }
+        });
+      }
+    });
+
+    // Contact Form
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.querySelector('#contact form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const formData = {
+            name: contactForm.querySelector('input[placeholder="your name"]').value,
+            email: contactForm.querySelector('input[placeholder="email"]').value,
+            message: contactForm.querySelector('textarea').value
+          };
+
+          try {
+            const response = await fetch(`${API_BASE}/contacts/`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+              alert('Thank you for your message! We will get back to you soon.');
+              contactForm.reset();
+            } else {
+              alert('Error sending message. Please try again.');
+            }
+          } catch (error) {
+            alert('Connection error. Make sure backend is running.');
+          }
+        });
+      }
+    });
+
+    // Check for existing admin token on page load
+    window.addEventListener('load', () => {
+      if (adminToken) {
+        document.body.classList.add('show-admin');
+        adminBtn.innerHTML = '<i class="fa-solid fa-lock-open mr-1"></i>ADMIN ON';
+      }
+      setupEditListeners();
+    });
+
+    // Setup edit functionality for impact metrics
+    function setupEditListeners() {
+      const editSpans = document.querySelectorAll('.admin-only span:has(i.fa-pen-to-square)');
+      editSpans.forEach(span => {
+        span.style.cursor = 'pointer';
+        span.addEventListener('click', function(e) {
+          e.preventDefault();
+          const card = this.closest('.bg-white, .bg-gradient-to-br');
+          if (card) {
+            const valueElement = card.querySelector('.text-4xl');
+            const descElement = card.querySelector('p.text-gray-500, p.text-sm');
+            if (valueElement && descElement) {
+              showEditModal(valueElement.textContent.trim(), descElement.textContent.trim());
+            }
+          }
+        });
+      });
+    }
+
+    // Show edit modal for metrics
+    function showEditModal(currentValue, description) {
+      const modal = document.createElement('div');
+      modal.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+          <div style="background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 500px;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem; font-weight: bold;">Edit: ${description}</h3>
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Current Value:</label>
+              <input type="text" id="metricValue" value="${currentValue}" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem; font-size: 1rem;">
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <button onclick="updateMetric('${description}')" style="flex: 1; background: #059669; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Save</button>
+              <button onclick="this.closest('[style*=position]').remove()" style="flex: 1; background: #e5e7eb; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Cancel</button>
+            </div>
+            <div id="editError" style="color: red; font-size: 0.875rem; margin-top: 1rem; display: none;"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.getElementById('metricValue').focus();
+    }
+
+    // Update metric via API
+    async function updateMetric(description) {
+      if (!adminToken) {
+        alert('Please login as admin first');
+        return;
+      }
+
+      const value = document.getElementById('metricValue').value;
+      const errorDiv = document.getElementById('editError');
+
+      if (!value || isNaN(value)) {
+        errorDiv.textContent = 'Please enter a valid number';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      // Map description to metric name
+      const metricMap = {
+        'women safety centers': 'women_safety_centers',
+        'rehab success stories': 'rehab_success_stories',
+        'blood units/year': 'blood_units_yearly',
+        'legal aid cases': 'legal_aid_cases'
+      };
+
+      const metricName = metricMap[description.toLowerCase()];
+      if (!metricName) {
+        errorDiv.textContent = 'Unknown metric';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/admin/metrics/${metricName}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${adminToken}`
+          },
+          body: JSON.stringify({ metric_value: parseInt(value) })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('✓ Metric updated successfully!');
+          location.reload();
+        } else {
+          errorDiv.textContent = data.error || 'Failed to update metric';
+          errorDiv.style.display = 'block';
+        }
+      } catch (error) {
+        errorDiv.textContent = 'Connection error: ' + error.message;
+        errorDiv.style.display = 'block';
+      }
+    }
+
+    // Load volunteers for admin panel
+    async function loadVolunteers() {
+      if (!adminToken) {
+        alert('Please login as admin first');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/`, {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to load volunteers');
+        }
+
+        const data = await response.json();
+        const list = document.getElementById('volunteers-list');
+
+        if (data.volunteers.length === 0) {
+          list.innerHTML = '<p class="text-gray-400 text-center py-8">No volunteer registrations yet</p>';
+          return;
+        }
+
+        list.innerHTML = data.volunteers.map(v => `
+          <div class="bg-gray-50 p-4 rounded-lg mb-3 border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="font-bold text-emerald-700">${v.full_name}</h4>
+                <p class="text-sm text-gray-600">${v.email}</p>
+                <p class="text-sm text-gray-600">📱 ${v.phone}</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold ${
+                v.status === 'approved' ? 'bg-green-200 text-green-800' :
+                v.status === 'rejected' ? 'bg-red-200 text-red-800' :
+                'bg-yellow-200 text-yellow-800'
+              }">${v.status.toUpperCase()}</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-2">Interest: <span class="font-semibold">${v.interested_area}</span></p>
+            <p class="text-xs text-gray-400">Registered: ${new Date(v.created_at).toLocaleDateString()}</p>
+            <div class="flex gap-2 mt-3">
+              <button onclick="updateVolunteerStatus(${v.id}, 'approved')" class="text-xs bg-green-600 text-white px-3 py-1 rounded">Approve</button>
+              <button onclick="updateVolunteerStatus(${v.id}, 'rejected')" class="text-xs bg-red-600 text-white px-3 py-1 rounded">Reject</button>
+              <button onclick="deleteVolunteer(${v.id})" class="text-xs bg-gray-600 text-white px-3 py-1 rounded">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (error) {
+        document.getElementById('volunteers-list').innerHTML = `<p class="text-red-600">Error: ${error.message}</p>`;
+      }
+    }
+
+    // Submit public volunteer registration form
+    async function submitVolunteerForm(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('volName').value;
+      const email = document.getElementById('volEmail').value;
+      const phone = document.getElementById('volPhone').value;
+      const area = document.getElementById('volArea').value;
+
+      if (!name || !email || !phone || !area) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            full_name: name,
+            email: email,
+            phone: phone,
+            interested_area: area
+          })
+        });
+
+        if (response.ok) {
+          alert('Thank you for registering! We will review your application and contact you soon.');
+          document.getElementById('volName').value = '';
+          document.getElementById('volEmail').value = '';
+          document.getElementById('volPhone').value = '';
+          document.getElementById('volArea').value = '';
+        } else {
+          const error = await response.json();
+          alert('Error: ' + (error.error || 'Failed to register'));
+        }
+      } catch (error) {
+        alert('Connection error: ' + error.message);
+      }
+    }
+
+    // Add volunteer from admin panel
+    async function addVolunteerAdmin() {
+      if (!adminToken) {
+        alert('Please login as admin first');
+        return;
+      }
+
+      const name = document.getElementById('adminVolName').value;
+      const email = document.getElementById('adminVolEmail').value;
+      const phone = document.getElementById('adminVolPhone').value;
+      const area = document.getElementById('adminVolArea').value;
+
+      if (!name || !email || !phone || !area) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            full_name: name,
+            email: email,
+            phone: phone,
+            interested_area: area
+          })
+        });
+
+        if (response.ok) {
+          alert('✓ Volunteer added successfully!');
+          document.getElementById('adminVolName').value = '';
+          document.getElementById('adminVolEmail').value = '';
+          document.getElementById('adminVolPhone').value = '';
+          document.getElementById('adminVolArea').value = '';
+          loadVolunteers();
+        } else {
+          alert('Error adding volunteer');
+        }
+      } catch (error) {
+        alert('Connection error');
+      }
+    }
+
+    // Update volunteer status
+    async function updateVolunteerStatus(id, status) {
+      if (!adminToken) return;
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${adminToken}`
+          },
+          body: JSON.stringify({ status })
+        });
+
+        if (response.ok) {
+          alert('✓ Volunteer status updated!');
+          loadVolunteers();
+        } else {
+          alert('Error updating volunteer');
+        }
+      } catch (error) {
+        alert('Connection error');
+      }
+    }
+
+    // Delete volunteer
+    async function deleteVolunteer(id) {
+      if (!confirm('Delete this volunteer registration?')) return;
+      if (!adminToken) return;
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
+
+        if (response.ok) {
+          alert('✓ Volunteer deleted!');
+          loadVolunteers();
+        } else {
+          alert('Error deleting volunteer');
+        }
+      } catch (error) {
+        alert('Connection error');
+      }
+    }
+
+    // Export volunteers to CSV
+    async function exportVolunteersCSV() {
+      if (!adminToken) {
+        alert('Please login as admin first');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/`, {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
+
+        const data = await response.json();
+        const csv = [
+          ['Name', 'Email', 'Phone', 'Interest Area', 'Status', 'Date'].join(','),
+          ...data.volunteers.map(v => [
+            `"${v.full_name}"`,
+            `"${v.email}"`,
+            `"${v.phone}"`,
+            v.interested_area,
+            v.status,
+            new Date(v.created_at).toLocaleDateString()
+          ].join(','))
+        ].join('\n');
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `volunteers-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+      } catch (error) {
+        alert('Error exporting volunteers');
+      }
+    }
+
+    // Delete all volunteers
+    async function deleteAllVolunteers() {
+      if (!confirm('Delete ALL volunteer registrations? This cannot be undone!')) return;
+      if (!adminToken) return;
+
+      try {
+        const response = await fetch(`${API_BASE}/volunteers/`, {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
+
+        const data = await response.json();
+
+        for (const volunteer of data.volunteers) {
+          await fetch(`${API_BASE}/volunteers/${volunteer.id}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${adminToken}` }
+          });
+        }
+
+        alert('✓ All volunteers deleted!');
+        loadVolunteers();
+      } catch (error) {
+        alert('Error deleting all volunteers');
+      }
+    }
+
+    // TEAM: load public team and render cards
+    async function loadTeam() {
+      try {
+        const response = await fetch(`${API_BASE}/team`);
+        if (!response.ok) throw new Error('Failed to load team');
+        const data = await response.json();
+        const grid = document.getElementById('team-grid');
+        if (!grid) return;
+        grid.innerHTML = data.team.map(m => `
+          <div class="bg-white p-6 rounded-3xl shadow-lg text-center hover-lift relative">
+            <img src="${m.photo}" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-emerald-100">
+            <h4 class="text-xl font-bold mt-4">${m.full_name}</h4>
+            <p class="text-emerald-600">${m.role}</p>
+            <div class="absolute top-3 right-3 edit-option" style="display:none;">
+              <button onclick='showTeamEditModal(${JSON.stringify(m)})' class="text-xs bg-emerald-700 text-white px-2 py-1 rounded mr-1">Edit</button>
+              <button onclick="deleteTeamMember(${m.id})" class="text-xs bg-red-600 text-white px-2 py-1 rounded">Delete</button>
+            </div>
+          </div>
+        `).join('');
+        // show-edit controls if admin
+        if (document.body.classList.contains('show-admin')) {
+          document.querySelectorAll('.edit-option').forEach(el => el.style.display = 'block');
+        }
+      } catch (error) {
+        console.error('Error loading team:', error);
+      }
+    }
+
+    // Show edit modal with member data
+    function showTeamEditModal(member) {
+      const modal = document.getElementById('teamEditModal');
+      if (!modal) return;
+      document.getElementById('teamMemberId').value = member.id || '';
+      document.getElementById('teamMemberName').value = member.full_name || '';
+      document.getElementById('teamMemberRole').value = member.role || '';
+      document.getElementById('teamMemberPhotoUrl').value = member.photo || '';
+      document.getElementById('teamMemberPhotoPreview').src = member.photo || '';
+      document.getElementById('teamMemberFile').value = '';
+      modal.style.display = 'flex';
+    }
+
+    function closeTeamModal() {
+      const modal = document.getElementById('teamEditModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Save team member (create or update)
+    async function uploadTeamPhotoFile(file) {
+      const fd = new FormData();
+      fd.append('file', file);
+      const resp = await fetch(`${API_BASE}/admin/team/upload`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${adminToken}` },
+        body: fd
+      });
+      if (!resp.ok) {
+        const e = await resp.json().catch(() => ({}));
+        throw new Error(e.error || 'Upload failed');
+      }
+      const j = await resp.json();
+      return j.url;
+    }
+
+    async function saveTeamMember() {
+      if (!adminToken) { alert('Please login as admin first'); return; }
+      const id = document.getElementById('teamMemberId').value;
+      const name = document.getElementById('teamMemberName').value;
+      const role = document.getElementById('teamMemberRole').value;
+      const existingUrl = document.getElementById('teamMemberPhotoUrl').value;
+      const fileInput = document.getElementById('teamMemberFile');
+
+      if (!name || !role) { alert('Please fill name and role'); return; }
+
+      let photoUrl = existingUrl || '';
+      if (fileInput && fileInput.files && fileInput.files.length) {
+        try {
+          photoUrl = await uploadTeamPhotoFile(fileInput.files[0]);
+        } catch (err) {
+          alert('Image upload failed: ' + err.message);
+          return;
+        }
+      }
+
+      const payload = { full_name: name, role, photo: photoUrl };
+      try {
+        const url = id ? `${API_BASE}/admin/team/${id}` : `${API_BASE}/admin/team`;
+        const method = id ? 'PUT' : 'POST';
+        const response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminToken}` },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          alert('✓ Team saved');
+          closeTeamModal();
+          loadTeam();
+        } else {
+          const e = await response.json();
+          alert('Error saving: ' + (e.error || JSON.stringify(e)));
+        }
+      } catch (err) {
+        alert('Connection error');
+      }
+    }
+
+    // Delete member
+    async function deleteTeamMember(id) {
+      if (!confirm('Delete this team member?')) return;
+      if (!adminToken) { alert('Please login as admin first'); return; }
+      try {
+        const response = await fetch(`${API_BASE}/admin/team/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
+        if (response.ok) {
+          alert('✓ Member deleted');
+          loadTeam();
+        } else {
+          alert('Error deleting member');
+        }
+      } catch (err) {
+        alert('Connection error');
+      }
+    }
+
+    // Add new member (open empty modal)
+    function openAddMemberModal() {
+      document.getElementById('teamMemberId').value = '';
+      document.getElementById('teamMemberName').value = '';
+      document.getElementById('teamMemberRole').value = '';
+      document.getElementById('teamMemberPhotoUrl').value = '';
+      document.getElementById('teamMemberFile').value = '';
+      document.getElementById('teamMemberPhotoPreview').src = '';
+      document.getElementById('teamEditModal').style.display = 'flex';
+    }
+
+    // Initialize team on load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTeam();
+    });
+
+    // Address Edit Functions
+    function openAddressEditModal() {
+      const modal = document.getElementById('addressEditModal');
+      if (!modal) return;
+      document.getElementById('editNgoName').value = document.getElementById('ngoName').textContent;
+      document.getElementById('editNgoStreet').value = document.getElementById('ngoStreet').textContent;
+      document.getElementById('editNgoCity').value = document.getElementById('ngoCity').textContent;
+      document.getElementById('editNgoPhone').value = document.getElementById('ngoPhone').textContent;
+      document.getElementById('editMapsUrl').value = document.getElementById('mapsLink').href;
+      modal.style.display = 'flex';
+    }
+
+    function closeAddressModal() {
+      const modal = document.getElementById('addressEditModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function saveAddressChanges() {
+      const name = document.getElementById('editNgoName').value;
+      const street = document.getElementById('editNgoStreet').value;
+      const city = document.getElementById('editNgoCity').value;
+      const phone = document.getElementById('editNgoPhone').value;
+      const mapsUrl = document.getElementById('editMapsUrl').value;
+
+      if (!name || !street || !city || !phone || !mapsUrl) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // Validate maps URL
+      if (!mapsUrl.includes('maps.google.com') && !mapsUrl.includes('google.com/maps')) {
+        alert('Please enter a valid Google Maps URL');
+        return;
+      }
+
+      document.getElementById('ngoName').textContent = name;
+      document.getElementById('ngoStreet').textContent = street;
+      document.getElementById('ngoCity').textContent = city;
+      document.getElementById('ngoPhone').textContent = phone;
+      document.getElementById('mapsLink').href = mapsUrl;
+
+      alert('Address and location updated successfully!');
+      closeAddressModal();
+    }
+
+    // Edit social media handles
+    function editSocialHandle(platform, currentValue, elementId) {
+      const modal = document.createElement('div');
+      modal.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+          <div style="background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 500px;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.25rem; font-weight: bold;">Edit ${platform}</h3>
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Handle/Username:</label>
+              <input type="text" id="socialValue" value="${currentValue}" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem; font-size: 1rem;">
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <button onclick="saveSocialHandle('${elementId}')" style="flex: 1; background: #059669; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Save</button>
+              <button onclick="this.closest('[style*=position]').remove()" style="flex: 1; background: #e5e7eb; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">Cancel</button>
+            </div>
+            <div id="socialError" style="color: red; font-size: 0.875rem; margin-top: 1rem; display: none;"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.getElementById('socialValue').focus();
+    }
+
+    function saveSocialHandle(elementId) {
+      const value = document.getElementById('socialValue').value;
+      const errorDiv = document.getElementById('socialError');
+
+      if (!value) {
+        errorDiv.textContent = 'Please enter a value';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      document.getElementById(elementId).textContent = value;
+      alert('✓ Social media handle updated!');
+      document.querySelector('[style*=position]').remove();
+    }
+  </script>
+
+  <!-- Team Edit Modal (admin only) -->
+  <div id="teamEditModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:9999;">
+      <div style="background:#fff; padding:1.5rem; border-radius:0.75rem; width:90%; max-width:480px;">
+      <h3 style="font-weight:700; margin-bottom:0.5rem;">Edit Team Member</h3>
+      <input type="hidden" id="teamMemberId">
+      <input type="hidden" id="teamMemberPhotoUrl">
+      <div style="display:grid; gap:0.5rem;">
+        <input id="teamMemberName" placeholder="Full name" style="padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        <input id="teamMemberRole" placeholder="Role" style="padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <input type="file" id="teamMemberFile" accept="image/*" style="flex:1;">
+          <img id="teamMemberPhotoPreview" src="" alt="preview" style="width:48px; height:48px; object-fit:cover; border-radius:8px;">
+        </div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+          <button onclick="saveTeamMember()" style="flex:1; background:#059669; color:#fff; padding:0.6rem; border-radius:0.5rem; border:none;">Save</button>
+          <button onclick="closeTeamModal()" style="flex:1; background:#e5e7eb; padding:0.6rem; border-radius:0.5rem; border:none;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address Edit Modal (admin only) -->
+  <div id="addressEditModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:#fff; padding:1.5rem; border-radius:0.75rem; width:90%; max-width:480px; max-height:90vh; overflow-y:auto;">
+      <h3 style="font-weight:700; margin-bottom:1rem; color:#059669;">Edit Address & Location</h3>
+      <div style="display:grid; gap:1rem;">
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:0.3rem; color:#333;">NGO Name</label>
+          <input type="text" id="editNgoName" placeholder="Organization name" style="width:100%; padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:0.3rem; color:#333;">Street Address</label>
+          <input type="text" id="editNgoStreet" placeholder="Street & sector" style="width:100%; padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:0.3rem; color:#333;">City & State</label>
+          <input type="text" id="editNgoCity" placeholder="City, State Postal Code" style="width:100%; padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:0.3rem; color:#333;">Phone Number</label>
+          <input type="tel" id="editNgoPhone" placeholder="+91 22 1234 5678" style="width:100%; padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:0.3rem; color:#333;">Google Maps URL</label>
+          <input type="url" id="editMapsUrl" placeholder="https://maps.google.com/maps?q=..." style="width:100%; padding:0.6rem; border:1px solid #ddd; border-radius:0.5rem; font-size:0.85rem;">
+          <p style="font-size:0.75rem; color:#666; margin-top:0.3rem;">Get the link from Google Maps and paste it here</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+          <button onclick="saveAddressChanges()" style="flex:1; background:#059669; color:#fff; padding:0.6rem; border-radius:0.5rem; border:none; font-weight:600; cursor:pointer;">Save</button>
+          <button onclick="closeAddressModal()" style="flex:1; background:#e5e7eb; padding:0.6rem; border-radius:0.5rem; border:none; font-weight:600; cursor:pointer;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
